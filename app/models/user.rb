@@ -7,4 +7,11 @@ class User < ActiveRecord::Base
   # Associations
   has_one :profile
 
+  # Callbacks
+  after_create :create_profile
+
+  def create_profile
+  	Profile.create(user_id: self.id)
+  end
+
 end
